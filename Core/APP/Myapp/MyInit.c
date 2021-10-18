@@ -25,7 +25,7 @@ MyInit_t MyInit =
 static void Peripheral_Set()
 {
     oled_init(&hi2c2);
-//    MPU6050_Init(&hi2c1);
+    MPU6050_Init(&hi2c1);
 }
 
 /********************************************************

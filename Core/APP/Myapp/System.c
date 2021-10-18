@@ -26,12 +26,22 @@ System_t System =
 */
 static void Run()
 {
-//    char Temp[5]="0";
-//    MPU6050_Read_All(&hi2c1,&MPU6050);
+    char Temp[5]="0";
+    char a[15]="0",g[15]="0";
+    char Angle[10]="0";
+    MPU6050_Read_All(&hi2c1,&MPU6050);
+    u8g2_ClearBuffer(&u8g2);
     u8g2_SetFont(&u8g2,u8g2_font_unifont_tr);
-//    sprintf(Temp,"%.2f",MPU6050.Temperature);
-    u8g2_DrawStr(&u8g2,10,10,"hello world");
+    sprintf(Temp,"%.1f",MPU6050.Temperature);
+    sprintf(a,"x%.1f y%.1f z%.1f",MPU6050.Ax,MPU6050.Ay,MPU6050.Az);
+    sprintf(g,"x%.1f y%.1f z%.1f",MPU6050.Gx,MPU6050.Gy,MPU6050.Gz);
+    sprintf(Angle,"X%.1f Y%.1f",MPU6050.KalmanAngleX,MPU6050.KalmanAngleY);
+    u8g2_DrawStr(&u8g2,2,10,Temp);
+    u8g2_DrawStr(&u8g2,40,10,Angle);
+    u8g2_DrawStr(&u8g2,2,30,a);
+    u8g2_DrawStr(&u8g2,2,50,g);
     u8g2_SendBuffer(&u8g2);
+//    HAL_Delay(100);
 }
 
 /*
